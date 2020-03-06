@@ -1737,7 +1737,11 @@ static int etnaviv_gpu_platform_probe(struct platform_device *pdev)
 		return PTR_ERR(gpu->mmio);
 
 #ifdef CONFIG_CPU_LOONGSON3
-	dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
+        err = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
+	if (err) {
+		dev_err(dev, "failed to set dms mask and coherent: %d\n", err);
+		return err;
+	}
 #endif
 
 	/* Get Interrupt: */
