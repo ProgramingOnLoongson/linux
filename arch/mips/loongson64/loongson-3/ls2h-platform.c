@@ -169,7 +169,7 @@ static void ls2h_early_config(void)
 		pcie_port_init(i);
 }
 
-static void __init ls2h_arch_initcall(void)
+static void ls2h_arch_initcall(void)
 {
 	u64 i, pci_mem_size;
 
@@ -191,7 +191,7 @@ static void __init ls2h_arch_initcall(void)
 	}
 }
 
-static void __init ls2h_device_initcall(void)
+static void ls2h_device_initcall(void)
 {
 }
 

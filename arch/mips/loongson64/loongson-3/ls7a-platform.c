@@ -56,7 +56,7 @@ static struct pci_controller ls7a_pci_controller = {
 	.io_offset	= 0x00000000UL,
 };
 
-static void __init ls7a_arch_initcall(void)
+static void ls7a_arch_initcall(void)
 {
 	pci_mem_resource.start = loongson_sysconf.pci_mem_start_addr;
 	pci_mem_resource.end   = loongson_sysconf.pci_mem_end_addr;
@@ -67,7 +67,7 @@ static void __init ls7a_arch_initcall(void)
 	register_pci_controller(&ls7a_pci_controller);
 }
 
-static void __init ls7a_device_initcall(void)
+static void ls7a_device_initcall(void)
 {
 }
 
