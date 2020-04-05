@@ -484,11 +484,7 @@ _NonContiguousAlloc(
 
     gcmkHEADER_ARG("NumPages=%lu", NumPages);
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 32)
     if (NumPages > totalram_pages)
-#else
-    if (NumPages > num_physpages)
-#endif
     {
         gcmkFOOTER_NO();
         return gcvNULL;
@@ -7441,7 +7437,7 @@ gckOS_SetSignalVG(
     gceSTATUS status;
     gctINT result;
     struct task_struct * userTask;
-    struct siginfo info;
+    struct kernel_siginfo info;
 
     userTask = FIND_TASK_BY_PID((pid_t)(gctUINTPTR_T) Process);
 
@@ -8053,7 +8049,7 @@ gckOS_SetSignal(
     gceSTATUS status;
     gctINT result;
     struct task_struct * userTask;
-    struct siginfo info;
+    struct kernel_siginfo info;
 
     userTask = FIND_TASK_BY_PID((pid_t)(gctUINTPTR_T) Process);
 
