@@ -748,7 +748,9 @@ _FreeAllNonPagedMemoryCache(
                     cache->size,
                     (gctSTRING)(TO_WRCB((gctUINT64)(cache->addr))),
                     cache->dmaHandle);
-        }else{
+        }
+	else
+	{
             dma_free_coherent(GPU_DEV,
                     cache->size,
                     (gctSTRING)(TO_WRCB((gctUINT64)(cache->addr))),

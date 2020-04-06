@@ -21,7 +21,7 @@
 
 #include <linux/device.h>
 #include <linux/slab.h>
-
+#include <linux/dma-mapping.h>
 #if USE_PLATFORM_DRIVER
 #   include <linux/platform_device.h>
 #endif
@@ -379,9 +379,8 @@ long loongson_drv_ioctl(
         gcmkONERROR(gcvSTATUS_INVALID_ARGUMENT);
     }
 
-    if ((ioctlCode != IOCTL_GCHAL_INTERFACE)
-    &&  (ioctlCode != IOCTL_GCHAL_KERNEL_INTERFACE)
-    )
+    if ( (ioctlCode != IOCTL_GCHAL_INTERFACE) && 
+	 (ioctlCode != IOCTL_GCHAL_KERNEL_INTERFACE) )
     {
         gcmkTRACE_ZONE(
             gcvLEVEL_ERROR, gcvZONE_DRIVER,

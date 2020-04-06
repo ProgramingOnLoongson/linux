@@ -30,6 +30,7 @@
 #include "platform_driver.h"
 #include <loongson-pch.h>
 
+
 #define DEVICE_NAME "galcore"
 
 #ifdef CONFIG_OF
@@ -67,18 +68,10 @@ static struct pci_driver gpu_pci_driver = {
 #endif
 };
 
-static int __init gpu_init(void)
+static int __init vivante_gpu_init(void)
 {
 	int ret;
 	struct pci_dev *pdev = NULL;
-
-	/* Prefer to use External Graphics Card */
-	while ((pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev))) {
-		if (pdev->vendor == PCI_VENDOR_ID_ATI)
-			return 0;
-		if (pdev->vendor == 0x1a03) /* ASpeed */
-			return 0;
-	}
 
 	ret = pci_register_driver(&gpu_pci_driver);
 	if(ret)
@@ -88,13 +81,16 @@ static int __init gpu_init(void)
 	return ret;
 }
 
-static void __exit gpu_exit(void)
+static void __exit vivante_gpu_exit(void)
 {
 	pci_unregister_driver(&gpu_pci_driver);
 	platform_driver_unregister(&gpu_plat_driver);
 }
 
-module_init(gpu_init);
-module_exit(gpu_exit);
-MODULE_DESCRIPTION("Loongson-2H Graphics Driver");
+module_init(vivante_gpu_init);
+module_exit(vivante_gpu_exit);
+
+MODULE_AUTHOR("Sui Jingfeng <suijingfeng@loongson.cn>");
+MODULE_DESCRIPTION("Vivante Graphics Driver");
 MODULE_LICENSE("GPL");
+MODULE_ALIAS("platform:galcore");

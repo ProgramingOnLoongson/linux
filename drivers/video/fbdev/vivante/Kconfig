@@ -1,6 +1,8 @@
 menuconfig VIVANTE
 	tristate "Loongson LS2H/LS7A VIVANTE GPU Driver Support"
 	depends on CPU_LOONGSON2 || CPU_LOONGSON3
+	depends on MMU
+	depends on DMA
 	default y
 	help
 	  This option enable Loongson LS2H/LS7A Vivante GPU kernel driver support.

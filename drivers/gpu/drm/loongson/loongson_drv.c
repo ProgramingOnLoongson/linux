@@ -686,5 +686,6 @@ module_exit(loongson_drm_exit);
 
 MODULE_AUTHOR("Chen Zhu <zhuchen@loongson.cn>");
 MODULE_AUTHOR("Huacai Chen <chenhc@lemote.com>");
+MODULE_AUTHOR("Sui Jingfeng <suijingfeng@loongson.cn>");
 MODULE_DESCRIPTION("Loongson LS2H/LS7A DRM Driver");
 MODULE_LICENSE("GPL");
